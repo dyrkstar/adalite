@@ -188,10 +188,10 @@ const ShelleyBlockchainExplorer = (config) => {
         },
       })
       if (response.status >= 400) {
-        throw NamedError('NetworkError', 'Unable to fetch running stakepools.')
+        throw NamedError('NetworkError', {message: 'Unable to fetch running stakepools.'})
       }
     } catch (e) {
-      throw NamedError('NetworkError', e.message)
+      throw NamedError('NetworkError', {message: e.message})
     }
     const poolArray = JSON.parse(await response.text())
     // eslint-disable-next-line no-sequences
@@ -268,7 +268,7 @@ const ShelleyWallet = ({config, randomInputSeed, randomChangeSeed, cryptoProvide
       .signTx(txAux, myAddresses.fixedPathMapper())
       .catch((e) => {
         debugLog(e)
-        throw NamedError('TransactionRejectedWhileSigning', e.message)
+        throw NamedError('TransactionRejectedWhileSigning', {message: e.message})
       })
 
     return signedTx
@@ -450,7 +450,7 @@ const ShelleyWallet = ({config, randomInputSeed, randomChangeSeed, cryptoProvide
   }
 
   function verifyAddress(addr: string) {
-    throw NamedError('UnsupportedOperationError', 'unsupported operation: verifyAddress')
+    throw NamedError('UnsupportedOperationError', {message: 'unsupported operation: verifyAddress'})
   }
 
   function generateNewSeeds() {
