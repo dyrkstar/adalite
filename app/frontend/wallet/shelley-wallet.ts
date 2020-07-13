@@ -359,21 +359,23 @@ const ShelleyWallet = ({config, randomInputSeed, randomChangeSeed, cryptoProvide
   }
 
   async function getWalletInfo() {
-    const {stakingBalance, nonStakingBalance, balance} = await getBalance()
-    const shelleyAccountInfo = await getAccountInfo()
-    const visibleAddresses = await getVisibleAddresses()
-    const transactionHistory = await getHistory()
+    // const {stakingBalance, nonStakingBalance, balance} = await getBalance()
+    // const shelleyAccountInfo = await getAccountInfo()
+    // const visibleAddresses = await getVisibleAddresses()
+    // const transactionHistory = await getHistory()
     // getDelegationHistory
     return {
-      balance,
+      balance: 0,
       shelleyBalances: {
-        nonStakingBalance,
-        stakingBalance: stakingBalance + shelleyAccountInfo.value,
-        rewardsAccountBalance: shelleyAccountInfo.value,
+        nonStakingBalance: 0,
+        stakingBalance: 0, //stakingBalance + shelleyAccountInfo.value,
+        rewardsAccountBalance: 0, //shelleyAccountInfo.value,
       },
-      shelleyAccountInfo,
-      transactionHistory,
-      visibleAddresses,
+      shelleyAccountInfo: {
+        delegation: {},
+      },
+      transactionHistory: [],
+      visibleAddresses: [],
     }
   }
 
